@@ -1,0 +1,63 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+            //Check whether a number is negative, positive or zero.
+            var num = +prompt("Enter a number");
+            if (num > 0){
+                document.write('Positive')
+            }
+            else if(num < 0){
+                document.write('Negative')
+            }
+            else{
+                document.write('Zero')
+            }
+        </script>
+        <br>
+        <script>
+            //Check whether a number is divisible by 5 and 11 or not.
+            var a = +prompt("Enter a number");
+            if(a % 5 === 0 && a % 11 === 0){
+                document.write('It is divisible by 5 and 11')
+            }
+            else{
+                document.write('Not divisible by 5 and 11')
+            }
+        </script>
+        <br>
+        <script>
+            // Input any alphabet and check whether it is vowel or consonant.
+            var ch = prompt("Enter a character");
+            if(ch==="a"||ch=="e"||ch=="i"||ch=="o"||ch=="u"){
+                document.write('Vowel')
+            }
+            else if(ch=="A"||ch=="E"||ch=="I"||ch=="O"||ch=="U"){
+                document.write('Vowel')
+            }
+            else{
+                document.write('Consonant')
+            }
+        </script>
+        <br>
+        <script>
+            //Write a program to print the greatest number in given three numbers.
+            var v1 = 45;
+            var v2 = 75;
+            var v3 = 52;
+            //var v4 = (v1>v2 && v1>v3 || v1<v2 && v3<v2)? "7" : "3";
+            //document.write(v4)
+            if(v1>v2 && v1>v3){
+                document.write(v1)
+            }
+            else if(v1<v2 && v3<v2){
+                document.write(v2)
+            }
+            else{
+                document.write(v3)
+            }
+        </script>
+        <br>
+        
+    </body>
+</html>
