@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body{
+            background-color: lightsteelblue;
+        }
+        #d1 ul{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        #d1 ul li{
+            width: 250px;
+            height: auto;
+            background-color: lightslategrey;
+            list-style: none;
+            /* border: 1px solid red; */
+            box-shadow: 2px 2px 5px gray,-2px -2px 5px gray;
+            margin: 20px;
+            padding: 15px;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serifn;
+            transition: 1s;
+        }
+        #inp1{
+            width: 250px;
+            margin-left: 1050px;
+        }
+        #header{
+            text-align: center;
+        }
+        #d1 ul li:hover{
+            box-shadow: 3px 3px 8px rgb(233, 228, 228),-3px -3px 8px rgb(236, 235, 235);
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <script type="text/babel">
+        var country;
+        var Rce = ()=>{
+            var [countries,setCountries] = React.useState([]);
+            React.useEffect(()=>{
+                axios.get("https://restcountries.com/v3.1/all").then((res)=>{
+                    console.log(res.data);
+                    country = [...res.data];
+                    setCountries([...res.data]);
+                })},[])
+            
+            function search(){
+                var g = country.filter(c=>{
+                    return c.name.common.startsWith(document.getElementById("inp1").value)
+                })
+                setCountries([...g])
+            }
+
+            return (
+                <div>
+                    <h1 id="header">All Countries</h1>
+                    <input type="text" name="" id="inp1" placeholder="search country" onKeyUp={()=>{search()}}/>
+                    <div>
+                        <ul>
+                            {
+                                countries.map(a=>{
+                                    return (
+                                        <li>
+                                            <h5>Country : {a.name.common.toUpperCase()}</h5>
+                                            <h5>Capital : {a.capital}</h5>
+                                            <h5>Population : {a.population}</h5>
+                                            <h5>
+                                                <dd>
+                                                    Borders : {
+                                                        typeof(a.borders)==="object"?a.borders.map(a=><dl>{a}</dl>):<dl>No borders</dl>
+                                                    }    
+                                                </dd>    
+                                            </h5>
+                                            <img src={a.flags.svg} alt="" width="150px" height="150px"/>
+                                        </li>
+                                    )})
+                            }   
+                        </ul>
+                    </div>
+                </div>
+            )
+        }
+        ReactDOM.render(<Rce/>,document.getElementById("d1"));
+    </script>
+</body>
+</html>
