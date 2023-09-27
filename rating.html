@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <style>
+            body{
+                background-color: rgb(181, 186, 192);
+            }
+            #container{
+                width: 400px;
+                height: 250px;
+                background-color: rgb(169, 171, 173);
+                box-shadow: 2px 2px 8px lightgray, -2px -2px 8px lightgray;
+                text-align: center;
+                margin: auto;
+                margin-top: 180px;
+                transition: 2s;
+            }
+            #heading{
+                margin-bottom: 50px;
+                color: rgb(241, 4, 4);
+            }
+            .bi{
+                font-size: 25px;
+            }
+            #container:hover{
+                box-shadow: 2px 2px 8px rgb(163, 82, 82), -2px -2px 8px rgb(163, 82, 82);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div>
+                <h1 id="heading">Ratings for reviews</h1>
+            </div>
+            <div>
+                <span class="bi bi-star" onclick="abc(event)" ></span>
+                <span class="bi bi-star" onclick="abc(event)" ></span>
+                <span class="bi bi-star" onclick="abc(event)" ></span>
+                <span class="bi bi-star" onclick="abc(event)" ></span>
+                <span class="bi bi-star" onclick="abc(event)" ></span>
+                <h1 id="d2">0/5</h1>
+            </div>
+        </div>
+        <script>
+            var star=document.getElementsByClassName("bi");
+            for(var i=0;i<star.length;i++){
+                star[i].id=i;
+            }
+            function abc(event){
+                for(var b=0;b<star.length;b++){
+                    star[b].classList.remove("bi-star-fill");
+                    star[b].classList.add("bi-star");
+                }
+                for(var a=0;a<=event.target.id;a++){
+                    star[a].classList.remove("bi-star");
+                    star[a].classList.add("bi-star-fill");
+                }
+                document.getElementById("d2").innerHTML=`${a}/${b}`;
+            }
+        </script>
+    </body>
+</html>
